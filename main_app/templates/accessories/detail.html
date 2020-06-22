@@ -13,7 +13,7 @@
         <p>Condition: {{ accessory.get_condition_display }}</p>
     </div>
     <div class="card-action blue-grey accent-1">
-        
+        <a href="{% url 'accessories_update' accessory.id %}">Edit</a>
     </div>
 </div>
 

@@ -66,3 +66,7 @@ class AccessoryCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+class AccessoryUpdate(LoginRequiredMixin, UpdateView):
+    model = Accessory
+    fields = ['name', 'accessory_type', 'year', 'manufacturer', 'serial', 'price', 'condition']
