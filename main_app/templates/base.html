@@ -23,7 +23,7 @@
                 <ul class="right">
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'instruments_index' %}">See Your Collection</a></li>
-                    <li><a href="">Add an Item</a></li>
+                    <li><a href="{% url 'instruments_create' %}">Add an Item</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>

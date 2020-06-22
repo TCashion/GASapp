@@ -9,7 +9,7 @@
         <p>Serial No: {{ instrument.serial }}</p>
         <p>Type: {{ instrument.instrument_type }}</p>
         <p>Price: {{ instrument.price }}</p>
-        <p>Condition: {{ instrument.condition }}</p>
+        <p>Condition: {{ instrument.get_condition_display }}</p>
     </div>
     <div class="card-action blue-grey accent-1">
         <a href="{% url 'instruments_update' instrument.id %}">Edit</a>
