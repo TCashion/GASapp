@@ -35,6 +35,14 @@ def instruments_detail(request, instrument_id):
     instrument = Instrument.objects.get(id=instrument_id)
     return render(request, 'instruments/detail.html', {'instrument': instrument})
 
+class InstrumentCreate(LoginRequiredMixin, CreateView):
+    model = Instrument
+    fields = ['name', 'instrument_type', 'manufacturer', 'serial', 'price', 'condition']
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 class InstrumentUpdate(LoginRequiredMixin, UpdateView):
     model = Instrument
     fields = ['name', 'instrument_type', 'manufacturer', 'serial', 'price', 'condition']
