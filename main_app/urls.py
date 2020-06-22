@@ -12,4 +12,5 @@ urlpatterns = [
     path('accessories/create', views.AccessoryCreate.as_view(), name='accessories_create'),
     path('accessories/<int:accessory_id>/', views.accessories_detail, name='accessories_detail'),
     path('accessories/<int:pk>/update', views.AccessoryUpdate.as_view(), name='accessories_update'),
+    path('accessories/<int:pk>/delete', views.AccessoryDelete.as_view(), name='accessories_delete'),
 ]

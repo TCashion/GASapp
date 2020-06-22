@@ -57,7 +57,7 @@ class InstrumentUpdate(LoginRequiredMixin, UpdateView):
     
 class InstrumentDelete(LoginRequiredMixin, DeleteView):
     model = Instrument
-    success_url = '/instruments/'
+    success_url = '/collections/'
 
 class AccessoryCreate(LoginRequiredMixin, CreateView):
     model = Accessory
@@ -70,3 +70,7 @@ class AccessoryCreate(LoginRequiredMixin, CreateView):
 class AccessoryUpdate(LoginRequiredMixin, UpdateView):
     model = Accessory
     fields = ['name', 'accessory_type', 'year', 'manufacturer', 'serial', 'price', 'condition']
+
+class AccessoryDelete(LoginRequiredMixin, DeleteView):
+    model = Accessory
+    success_url = '/collections/'
