@@ -4,7 +4,7 @@
 <h1>Index</h1>
 {% for instrument in instruments %}
 <a href="{% url 'instruments_detail' instrument.id %}">
-    <div class="card">
+    <div class="card hoverable">
         <div class="card-content">
             <span class="card-title">{{ instrument.name }}</span>
             <p>Manufacturer: {{ instrument.manufacturer }}</p>
@@ -13,6 +13,5 @@
     </div>
 </a>
 {% endfor %}
-
 
 {% endblock %}

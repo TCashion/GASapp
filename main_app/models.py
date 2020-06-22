@@ -36,4 +36,7 @@ class Instrument(models.Model):
 
     def __str__(self):
         return f"Name: {self.name}, Type: {self.instrument_type}"
+    
+    def get_absolute_url(self):
+        return reverse('instruments_detail', kwargs={'instrument_id' : self.id})
 

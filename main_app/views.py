@@ -30,10 +30,12 @@ def instruments_index(request):
     instruments = request.user.instrument_set.order_by('name')
     return render(request, 'instruments/index.html', {'instruments': instruments})
 
-
 @login_required
 def instruments_detail(request, instrument_id):
     instrument = Instrument.objects.get(id=instrument_id)
     return render(request, 'instruments/detail.html', {'instrument': instrument})
 
-
+class InstrumentUpdate(LoginRequiredMixin, UpdateView):
+    model = Instrument
+    fields = ['name', 'instrument_type', 'manufacturer', 'serial', 'price', 'condition']
+    
