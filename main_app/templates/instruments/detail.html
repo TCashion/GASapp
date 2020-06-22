@@ -13,7 +13,7 @@
     </div>
     <div class="card-action blue-grey accent-1">
         <a href="{% url 'instruments_update' instrument.id %}">Edit</a>
-        <a href="">Delete</a>
+        <a href="{% url 'instruments_delete' instrument.id %}">Delete</a>
     </div>
 </div>
 
