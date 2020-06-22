@@ -5,6 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Instrument
 
 # Create your views here.
 def home(request):
@@ -23,4 +24,10 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+@login_required
+def instruments_index(request):
+    instruments = request.user.instrument_set.order_by('name')
+    return render(request, 'instruments/index.html', {'instruments': instruments})
+
 
