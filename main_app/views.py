@@ -45,7 +45,7 @@ def accessories_detail(request, accessory_id):
 
 class InstrumentCreate(LoginRequiredMixin, CreateView):
     model = Instrument
-    fields = ['name', 'instrument_type', 'year', 'manufacturer', 'serial', 'price', 'condition']
+    fields = ['name', 'instrument_type', 'year', 'manufacturer', 'serial', 'price', 'condition', 'owned']
     
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -53,7 +53,7 @@ class InstrumentCreate(LoginRequiredMixin, CreateView):
 
 class InstrumentUpdate(LoginRequiredMixin, UpdateView):
     model = Instrument
-    fields = ['name', 'instrument_type', 'year', 'manufacturer', 'serial', 'price', 'condition']
+    fields = ['name', 'instrument_type', 'year', 'manufacturer', 'serial', 'price', 'condition', 'owned']
     
 class InstrumentDelete(LoginRequiredMixin, DeleteView):
     model = Instrument
@@ -61,7 +61,7 @@ class InstrumentDelete(LoginRequiredMixin, DeleteView):
 
 class AccessoryCreate(LoginRequiredMixin, CreateView):
     model = Accessory
-    fields = ['name', 'accessory_type', 'year', 'manufacturer', 'serial', 'price', 'condition']
+    fields = ['name', 'accessory_type', 'year', 'manufacturer', 'serial', 'price', 'condition', 'owned']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -69,7 +69,7 @@ class AccessoryCreate(LoginRequiredMixin, CreateView):
 
 class AccessoryUpdate(LoginRequiredMixin, UpdateView):
     model = Accessory
-    fields = ['name', 'accessory_type', 'year', 'manufacturer', 'serial', 'price', 'condition']
+    fields = ['name', 'accessory_type', 'year', 'manufacturer', 'serial', 'price', 'condition', 'owned']
 
 class AccessoryDelete(LoginRequiredMixin, DeleteView):
     model = Accessory

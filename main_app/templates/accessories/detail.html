@@ -11,6 +11,7 @@
         <p>Type: {{ accessory.accessory_type }}</p>
         <p>Price: {{ accessory.price }}</p>
         <p>Condition: {{ accessory.get_condition_display }}</p>
+        <p>Owned: {{ accessory.owned }}</p>
     </div>
     <div class="card-action blue-grey accent-1">
         <a href="{% url 'accessories_update' accessory.id %}">Edit</a>
