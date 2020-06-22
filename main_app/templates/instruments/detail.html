@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ instrument.name }}</h1>
+
+<div class="card">
+    <div class="card-content">
+        <p>Manufacturer: {{ instrument.manufacturer }}</p>
+        <p>Serial No: {{ instrument.serial }}</p>
+        <p>Type: {{ instrument.instrument_type }}</p>
+        <p>Price: {{ instrument.price }}</p>
+        <p>Condition: {{ instrument.condition }}</p>
+    </div>
+    <div class="card-action blue-grey accent-1">
+        <a href="">Edit</a>
+    </div>
+</div>
+
+
+
+{% endblock %}
