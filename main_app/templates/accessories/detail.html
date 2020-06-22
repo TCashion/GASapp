@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ accessory.name }}</h1>
+
+<div class="card">
+    <div class="card-content">
+        <p>Manufacturer: {{ accessory.manufacturer }}</p>
+        <p>Manufacture Year: {{ accessory.year }}</p>
+        <p>Serial No: {{ accessory.serial }}</p>
+        <p>Type: {{ accessory.accessory_type }}</p>
+        <p>Price: {{ accessory.price }}</p>
+        <p>Condition: {{ accessory.get_condition_display }}</p>
+    </div>
+    <div class="card-action blue-grey accent-1">
+        <a href="{% url 'accessories_update' accessory.id %}">Edit</a>
+        <a href="{% url 'accessories_delete' accessory.id %}">Delete</a>
+    </div>
+</div>
+
+
+{% endblock %}
