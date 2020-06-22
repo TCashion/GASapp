@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 
 # Create your models here.
 
@@ -21,7 +22,11 @@ class Instrument(models.Model):
     instrument_type = models.CharField(max_length=150)
     manufacturer = models.CharField(max_length=150)
     serial = models.CharField(max_length=250)
-    price = models.DecimalField(max_digits=12, decimal_places=2)
+    price = models.DecimalField(
+        max_digits=12, 
+        decimal_places=2,
+        validators = [MinValueValidator(0.01, 'Price must be greater than $0.01')],
+    )
     condition = models.CharField(
         max_length = 1,
         choices = CONDITIONS,
