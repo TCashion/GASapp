@@ -36,7 +36,7 @@ def instruments_detail(request, instrument_id):
 
 class InstrumentCreate(LoginRequiredMixin, CreateView):
     model = Instrument
-    fields = ['name', 'instrument_type', 'manufacturer', 'serial', 'price', 'condition']
+    fields = ['name', 'instrument_type', 'year', 'manufacturer', 'serial', 'price', 'condition']
     
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -44,7 +44,7 @@ class InstrumentCreate(LoginRequiredMixin, CreateView):
 
 class InstrumentUpdate(LoginRequiredMixin, UpdateView):
     model = Instrument
-    fields = ['name', 'instrument_type', 'manufacturer', 'serial', 'price', 'condition']
+    fields = ['name', 'instrument_type', 'year', 'manufacturer', 'serial', 'price', 'condition']
     
 class InstrumentDelete(LoginRequiredMixin, DeleteView):
     model = Instrument
