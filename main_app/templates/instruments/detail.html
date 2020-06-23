@@ -37,26 +37,34 @@
 
 <h3>Accessories for this instrument:</h3>
 <div class="row card-container">
+{% for accessory in accessories %}
+<div class="col s12 m6">
+        <div class="card">
+            <div class="card-content">                
+                <p> {{ accessory.name }}</p>
+                <a href="{% url 'assoc_accessory' instrument.id accessory.id %}">Add this accessory to the {{ instrument.name }}?</a>
+            </div>
+        </div>
+    </div>
+{% endfor%}
     <div class="col s12 m6">
         <div class="card">
-            <div class="card-content">
-                <h4>ADD ACCESSORY FORM HERE</h4>
+            <div class="card-content">                
                 <p>Don't see the one you want?</p>
                 <a href="{% url 'accessories_create' %}">Click here to add a new one</a>
             </div>
         </div>
     </div>
-    {% if instrument.accessories.count %}
-
-    {% else %}
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-content">
-                    <h4>No associated accessories yet.</h4>
-                </div>
+{% for accessory in instrument.accessories.all %}
+<div class="col s12 m6">
+        <div class="card">
+            <div class="card-content">                
+                <p> {{ accessory.name }}</p>
+                {% comment %} <a href="{% url 'accessories_create' %}">Click here to add a new one</a> {% endcomment %}
             </div>
         </div>
-    {% endif %}   
+    </div>
+    {% endfor %}   
 </div>
 
 <hr class="blue-grey">

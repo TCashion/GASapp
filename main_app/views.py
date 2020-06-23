@@ -41,7 +41,12 @@ def index(request):
 @login_required
 def instruments_detail(request, instrument_id):
     instrument = Instrument.objects.get(id=instrument_id)
-    return render(request, 'instruments/detail.html', {'instrument': instrument})
+    accessories = Accessory.objects.exclude(id__in = instrument.accessories.all().values_list('id')).filter(user=request.user)
+    return render(request, 'instruments/detail.html', 
+        {
+            'instrument': instrument,
+            'accessories': accessories
+        })
 
 @login_required
 def accessories_detail(request, accessory_id):
@@ -112,3 +117,14 @@ def delete_photo(request, photo_id, instrument_id, accessory_id):
         photo.delete()
         return redirect('accessories_detail', accessory_id=accessory_id)
     
+
+@login_required
+def assoc_accessory(request, instrument_id, accessory_id):
+    Instrument.objects.get(id=instrument_id).accessories.add(accessory_id)
+    return redirect('instruments_detail', instrument_id=instrument_id)
+
+
+@login_required
+def dis_assoc_accessory(request, instrument_id, accessory_id):
+    Instrument.objects.get(id=instrument_id).accessories.remove(accessory_id)
+    return redirect('instruments_detail', instrument_id=instrument_id)
