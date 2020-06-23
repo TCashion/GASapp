@@ -40,6 +40,12 @@ h1, h2, h3, h4, h5, h6, p {
     margin: 1.5rem 0 0 0;
 }
 
+.card .card-image .card-title {
+    background-color: #607d8b;
+    width: 100%;
+    padding: 0 24px;
+    font-size: 15px;
+}
 @media (max-width: 768px) {
     .card-container {
         flex-direction: column;
