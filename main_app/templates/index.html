@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Instruments</h1>
+<div id="toggle-links">
+    <h1 class="toggle-header"><a href="" class="emphasized" id="instruments-el">Instruments</a></h1>
+    <h1 class="toggle-header">/ <a href="" id="accessories-el">Accessories</a></h1>
+</div>
+
 <div class="row">
 {% for instrument in instruments %}
-    <div class="col s12 m6 l4">
+    <div class="col s12 m6 l4 instruments">
         <a href="{% url 'instruments_detail' instrument.id %}">
             <div class="card hoverable large">
                 <div class="card-image">
@@ -26,14 +30,9 @@
         </a>
     </div>
 {% endfor %}
-</div>
 
-<hr>
-
-<h1>Accessories</h1>
-<div class="row">
 {% for accessory in accessories %}
-    <div class="col s12 m6 l4">
+    <div class="col s12 m6 l4 accessories">
         <a href="{% url 'accessories_detail' accessory.id %}">
             <div class="card hoverable large">
                 <div class="card-image">
@@ -56,5 +55,55 @@
     </div>
 {% endfor %}
 </div>
+
+<script>
+    const toggleEl = document.getElementById('toggle-links');
+    const instrumentsHeaderEl = document.getElementById('instruments-el');
+    const accessoriesHeaderEl = document.getElementById('accessories-el');
+    const accessoryEls = document.querySelectorAll('.accessories'); 
+    const instrumentEls = document.querySelectorAll('.instruments'); 
+
+    toggleVisible();
+
+    toggleEl.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (e.target === instrumentsHeaderEl) {
+            if (instrumentsHeaderEl.classList.contains('emphasized')) {
+                instrumentsHeaderEl.classList.remove('emphasized');
+                accessoriesHeaderEl.classList.add('emphasized');
+            } else {
+                instrumentsHeaderEl.classList.add('emphasized');
+                accessoriesHeaderEl.classList.remove('emphasized');
+            }
+        } else if (e.target === accessoriesHeaderEl) {
+            if (accessoriesHeaderEl.classList.contains('emphasized')) {
+                accessoriesHeaderEl.classList.remove('emphasized');
+                instrumentsHeaderEl.classList.add('emphasized');
+            } else {
+                accessoriesHeaderEl.classList.add('emphasized');
+                instrumentsHeaderEl.classList.remove('emphasized');
+            }
+        };
+        toggleVisible();
+    });
+
+    function toggleVisible() {
+        if (instrumentsHeaderEl.classList.contains('emphasized')) {
+            instrumentEls.forEach(function(el) {
+                el.classList.remove('hidden');
+            });
+            accessoryEls.forEach(function(el) {
+                el.classList.add('hidden');
+            });
+        } else if (accessoriesHeaderEl.classList.contains('emphasized')) {
+            instrumentEls.forEach(function(el) {
+                el.classList.add('hidden');
+            });
+            accessoryEls.forEach(function(el) {
+                el.classList.remove('hidden');
+            });
+        };
+    };
+</script>
 
 {% endblock %}

@@ -18,7 +18,7 @@ input[type=checkbox]:checked, input[type=checkbox]:not(:checked) {
     pointer-events: all;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6, p, h1 > a {
     /* blue-grey darken-3 */
     color: #37474f; 
 }
@@ -46,6 +46,19 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 0 24px;
     font-size: 15px;
 }
+
+.toggle-header {
+    display: inline-block;
+}
+
+.emphasized {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .card-container {
         flex-direction: column;
