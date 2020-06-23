@@ -87,3 +87,17 @@ class Instrument(models.Model):
         return reverse('instruments_detail', kwargs={'instrument_id' : self.id})
 
 
+class InstrumentPhoto(models.Model):
+    url = models.CharField(max_length=300)
+    instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"Photo for instrument_id: {self.instrument_id} @{self.url}"
+
+
+class AccessoryPhoto(models.Model):
+    url = models.CharField(max_length=300)
+    accessory = models.ForeignKey(Accessory, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"Photo for accessory_id: {self.accessory_id} @{self.url}"
