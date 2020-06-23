@@ -3,21 +3,70 @@
 
 <h1>{{ accessory.name }}</h1>
 
-<div class="card">
-    <div class="card-content">
-        <p>Manufacturer: {{ accessory.manufacturer }}</p>
-        <p>Manufacture Year: {{ accessory.year }}</p>
-        <p>Serial No: {{ accessory.serial }}</p>
-        <p>Type: {{ accessory.accessory_type }}</p>
-        <p>Price: {{ accessory.price }}</p>
-        <p>Condition: {{ accessory.get_condition_display }}</p>
-        <p>Owned: {{ accessory.owned }}</p>
-    </div>
-    <div class="card-action blue-grey accent-1">
-        <a href="{% url 'accessories_update' accessory.id %}">Edit</a>
-        <a href="{% url 'accessories_delete' accessory.id %}">Delete</a>
+<div class="row card-container">
+    <div class="col s12 m8 l6">
+        <div class="card">
+            <div class="card-content">
+                <p>Manufacturer: {{ accessory.manufacturer }}</p>
+                <p>Manufacture Year: {{ accessory.year }}</p>
+                <p>Serial No: {{ accessory.serial }}</p>
+                <p>Type: {{ accessory.accessory_type }}</p>
+                <p>Price: {{ accessory.price }}</p>
+                <p>Condition: {{ accessory.get_condition_display }}</p>
+                <p>Owned: {{ accessory.owned }}</p>
+            </div>
+            <div class="card-action blue-grey accent-1">
+                <a href="{% url 'accessories_update' accessory.id %}">Edit</a>
+                <a href="{% url 'accessories_delete' accessory.id %}">Delete</a>
+            </div>
+        </div>
     </div>
 </div>
 
+<hr class="blue-grey">
+    
+<h3>Instruments related to this accessory:</h3>
+<div class="row card-container">
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-content">
+                <h4>ADD Instrument FORM HERE</h4>
+                <p>Don't see the one you want?</p>
+                <a href="{% url 'instruments_create' %}">Click here to add a new one</a>
+            </div>
+        </div>
+    </div>
+    {% if instrument.accessories.count %}
+
+    {% else %}
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <h4>No associated instruments yet.</h4>
+                </div>
+            </div>
+        </div>
+    {% endif %}   
+</div>
+
+<hr class="blue-grey">
+
+<h3>Photos for this accessory:</h3>
+<div class="row card-container">
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-content">
+                <h4>ADD PHOTO FORM HERE</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-content">
+                <h4>No photos yet.</h4>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
