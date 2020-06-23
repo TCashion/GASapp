@@ -8,7 +8,7 @@
         <a href="{% url 'instruments_detail' instrument.id %}">
             <div class="card hoverable large">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/150">
+                    <img src="{{ instrument.instrumentphoto_set.first.url }}">
                     <span class="card-title">{{ instrument.name }}</span>
                 </div>
                 <div class="card-content">
@@ -31,8 +31,8 @@
         <a href="{% url 'accessories_detail' accessory.id %}">
             <div class="card hoverable large">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/150">
-                    <span class="card-title">{{ instrument.name }}</span>
+                    <img src="{{ accessory.accessoryphoto_set.first.url }}">
+                    <span class="card-title">{{ accessory.name }}</span>
                 </div>
                 <div class="card-content">
                     <p>Manufacturer: {{ accessory.manufacturer }}</p>
