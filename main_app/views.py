@@ -8,6 +8,9 @@ from .models import Instrument, Accessory, InstrumentPhoto, AccessoryPhoto
 import uuid
 import boto3
 
+S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
+BUCKET = 'gas-app'
+
 # Create your views here.
 def home(request):
     return render(request, 'home.html')

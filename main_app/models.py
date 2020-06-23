@@ -89,7 +89,7 @@ class Instrument(models.Model):
 
 class InstrumentPhoto(models.Model):
     url = models.CharField(max_length=300)
-    instruments = models.ForeignKey(Instrument, on_delete=models.CASCADE)
+    instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
     
     def __str__(self):
         return f"Photo for instrument_id: {self.instrument_id} @{self.url}"
@@ -97,7 +97,7 @@ class InstrumentPhoto(models.Model):
 
 class AccessoryPhoto(models.Model):
     url = models.CharField(max_length=300)
-    accessories = models.ForeignKey(Accessory, on_delete=models.CASCADE)
+    accessory = models.ForeignKey(Accessory, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"Photo for accessories_id: {self.accessories_id} @{self.url}"
+        return f"Photo for accessory_id: {self.accessory_id} @{self.url}"
