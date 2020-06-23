@@ -84,7 +84,7 @@ class AccessoryDelete(LoginRequiredMixin, DeleteView):
 def add_photo(request, instrument_id, accessory_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
-        s3 = boto3.client('s3')
+        s3 = boto3.session.Session(profile_name='gas-app').client('s3')
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
@@ -100,3 +100,15 @@ def add_photo(request, instrument_id, accessory_id):
         return redirect('instruments_detail', instrument_id=instrument_id)
     elif accessory_id > 0:
         return redirect('accessories_detail', accessory_id=accessory_id)
+
+@login_required
+def delete_photo(request, photo_id, instrument_id, accessory_id):
+    if instrument_id > 0: 
+        photo = InstrumentPhoto.objects.filter(id=photo_id)
+        photo.delete()
+        return redirect('instruments_detail', instrument_id=instrument_id)
+    if accessory_id > 0: 
+        photo = AccessoryPhoto.objects.filter(id=photo_id)
+        photo.delete()
+        return redirect('accessories_detail', accessory_id=accessory_id)
+    

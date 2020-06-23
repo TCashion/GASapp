@@ -36,6 +36,10 @@ h1, h2, h3, h4, h5, h6, p {
     margin: auto;
 }
 
+.card-panel {
+    margin: 1.5rem 0 0 0;
+}
+
 @media (max-width: 768px) {
     .card-container {
         flex-direction: column;
