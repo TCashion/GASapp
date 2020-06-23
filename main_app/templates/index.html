@@ -14,7 +14,13 @@
                 <div class="card-content">
                     <p>Manufacturer: {{ instrument.manufacturer }}</p>
                     <p>Type: {{ instrument.instrument_type }}</p>
-                    <p>Owned?: {{ instrument.owned }}</p>
+                    <p>Owned?: 
+                        {% if instrument.owned %}
+                            <span style="color:green">True</span>
+                        {% else %}
+                            <span style="color:red">False</span>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </a>
@@ -37,7 +43,13 @@
                 <div class="card-content">
                     <p>Manufacturer: {{ accessory.manufacturer }}</p>
                     <p>Type: {{ accessory.accessory_type }}</p>
-                    <p>Owned?: {{ accessory.owned }}</p>
+                    <p>Owned?: 
+                        {% if accessory.owned %}
+                            <span style="color:green">True</span>
+                        {% else %}
+                            <span style="color:red">False</span>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </a>

@@ -6,6 +6,10 @@
 <div class="row card-container">
     <div class="col s12 m8 l6">
         <div class="card">
+            <div class="card-image">
+                <img src="{{ accessory.accessoryphoto_set.first.url }}">
+                <span class="card-title">{{ accessory.name }}</span>
+            </div>
             <div class="card-content">
                 <p>Manufacturer: {{ accessory.manufacturer }}</p>
                 <p>Manufacture Year: {{ accessory.year }}</p>
@@ -13,7 +17,14 @@
                 <p>Type: {{ accessory.accessory_type }}</p>
                 <p>Price: {{ accessory.price }}</p>
                 <p>Condition: {{ accessory.get_condition_display }}</p>
-                <p>Owned: {{ accessory.owned }}</p>
+                <p>
+                    Owned: 
+                    {% if accessory.owned %}
+                        <span style="color:green">True</span>
+                    {% else %}
+                        <span style="color:red">False</span>
+                    {% endif %}
+                </p>
             </div>
             <div class="card-action blue-grey accent-1">
                 <a href="{% url 'accessories_update' accessory.id %}">Edit</a>
