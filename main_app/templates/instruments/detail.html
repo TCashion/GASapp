@@ -34,20 +34,44 @@
 </div>
 
 <hr class="blue-grey">
+<h3>Associated Accessories:</h3>
+<div class="row card-container">
+{% for accessory in instrument.accessories.all %}
+<div class="col s12 m6">
+        <div class="card horizontal">
+            <div class="card-image">
+                <img src="{{ accessory.accessoryphoto_set.first.url  }}">
+            </div>
+            <div class='card-stacked'>
+                <div class="card-content">                
+                    <p> {{ accessory.name }}</p>
+                    <form action="{% url 'dis_assoc_accessory' instrument.id accessory.id %}">
+                        <button type="submit" class="btn btn-small">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+       
+</div>
+<hr class="blue-grey">
 
-<h3>Accessories for this instrument:</h3>
+<h3>Available Accessories:</h3>
 <div class="row card-container">
 {% for accessory in accessories %}
 <div class="col s12 m6">
         <div class="card">
             <div class="card-content">                
                 <p> {{ accessory.name }}</p>
-                <a href="{% url 'assoc_accessory' instrument.id accessory.id %}">Add this accessory to the {{ instrument.name }}?</a>
+                <form action="{% url 'assoc_accessory' instrument.id accessory.id %}">
+                    <button type="submit" class="btn btn-small">Add</button>
+                </form>
             </div>
         </div>
     </div>
 {% endfor%}
-    <div class="col s12 m6">
+ <div class="col s12 m6">
         <div class="card">
             <div class="card-content">                
                 <p>Don't see the one you want?</p>
@@ -55,17 +79,9 @@
             </div>
         </div>
     </div>
-{% for accessory in instrument.accessories.all %}
-<div class="col s12 m6">
-        <div class="card">
-            <div class="card-content">                
-                <p> {{ accessory.name }}</p>
-                {% comment %} <a href="{% url 'accessories_create' %}">Click here to add a new one</a> {% endcomment %}
-            </div>
-        </div>
-    </div>
-    {% endfor %}   
 </div>
+
+   
 
 <hr class="blue-grey">
 
