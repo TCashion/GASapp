@@ -54,13 +54,14 @@ def instruments_detail(request, instrument_id):
     price_guide = {
         'title': response['price_guides'][0]['title'],
         'low': response['price_guides'][0]['estimated_value']['price_low']['amount'],
-        'high': response['price_guides'][0]['estimated_value']['price_high']['amount']
+        'high': response['price_guides'][0]['estimated_value']['price_high']['amount'],
+        'url': response['price_guides'][0]['_links']['web']['href']
     }
     return render(request, 'instruments/detail.html', 
         {
             'instrument': instrument,
             'accessories': accessories,
-            'price_guide': price_guide
+            'price_guide': price_guide,
         })
 
 @login_required
@@ -77,12 +78,13 @@ def accessories_detail(request, accessory_id):
     price_guide = {
         'title': response['price_guides'][0]['title'],
         'low': response['price_guides'][0]['estimated_value']['price_low']['amount'],
-        'high': response['price_guides'][0]['estimated_value']['price_high']['amount']
+        'high': response['price_guides'][0]['estimated_value']['price_high']['amount'],
+        'url': response['price_guides'][0]['_links']['web']['href']
     }
     return render(request, 'accessories/detail.html',
         {
             'accessory': accessory,
-            'price_guide': price_guide
+            'price_guide': price_guide,
         })
 
 class InstrumentCreate(LoginRequiredMixin, CreateView):
