@@ -3,17 +3,22 @@
 
 <div id="toggle-links">
     <h1 class="toggle-header"><a href="" class="emphasized" id="instruments-el">Instruments</a></h1>
-    <h1 class="toggle-header">/ <a href="" id="accessories-el">Accessories</a></h1>
+    <div class="toggle-header toggle-header-divider" style="height: 64px"><i class="material-icons orange-text" style="font-size: 55px;">local_gas_station</i> </div>
+    <h1 class="toggle-header"><a href="" id="accessories-el">Accessories</a></h1>
 </div>
 
 <div class="row instruments">
     {% for instrument in instruments %}
         {% if instrument.owned %}
-            <div class="col s12 m6 l4 instruments">
+            <div class="col s12 m6 xl4 instruments">
                 <a href="{% url 'instruments_detail' instrument.id %}">
                     <div class="card hoverable large">
                         <div class="card-image">
+                            {% if instrument.instrumentphoto_set.count %}
                             <img src="{{ instrument.instrumentphoto_set.first.url }}">
+                            {% else %}
+                            <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
+                            {% endif %}
                             <span class="card-title">{{ instrument.name }}</span>
                         </div>
                         <div class="card-content">
@@ -37,11 +42,15 @@
     <h4>Wishlist:</h4>
     {% for instrument in instruments %}
         {% if not instrument.owned %}
-            <div class="col s12 m6 l4 instruments">
+            <div class="col s12 m6 xl4 instruments">
                 <a href="{% url 'instruments_detail' instrument.id %}">
                     <div class="card hoverable large">
                         <div class="card-image">
+                            {% if instrument.instrumentphoto_set.count %}
                             <img src="{{ instrument.instrumentphoto_set.first.url }}">
+                            {% else %}
+                            <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
+                            {% endif %}
                             <span class="card-title">{{ instrument.name }}</span>
                         </div>
                         <div class="card-content">
@@ -65,11 +74,15 @@
 <div class="row accessories">
     {% for accessory in accessories %}
         {% if accessory.owned %}
-            <div class="col s12 m6 l4 accessories">
+            <div class="col s12 m6 xl4 accessories">
                 <a href="{% url 'accessories_detail' accessory.id %}">
                     <div class="card hoverable large">
                         <div class="card-image">
+                            {% if accessory.accessoryphoto_set.count %}
                             <img src="{{ accessory.accessoryphoto_set.first.url }}">
+                            {% else %}
+                            <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
+                            {% endif %}
                             <span class="card-title">{{ accessory.name }}</span>
                         </div>
                         <div class="card-content">
@@ -93,11 +106,15 @@
     <h4>Wishlist:</h4>
     {% for accessory in accessories %}
         {% if not accessory.owned %}
-            <div class="col s12 m6 l4 accessories">
+            <div class="col s12 m6 xl4 accessories">
                 <a href="{% url 'accessories_detail' accessory.id %}">
                     <div class="card hoverable large">
                         <div class="card-image">
+                            {% if accessory.accessoryphoto_set.count %}
                             <img src="{{ accessory.accessoryphoto_set.first.url }}">
+                            {% else %}
+                            <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
+                            {% endif %}
                             <span class="card-title">{{ accessory.name }}</span>
                         </div>
                         <div class="card-content">
