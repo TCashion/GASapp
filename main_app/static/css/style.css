@@ -59,6 +59,10 @@ h1, h2, h3, h4, h5, h6, p, h1 > a {
     display: none;
 }
 
+.extra-large {
+    max-height: 750px;
+}
+
 @media (max-width: 768px) {
     .card-container {
         flex-direction: column;
