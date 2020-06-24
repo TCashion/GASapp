@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GASapp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
@@ -17,26 +19,44 @@
     <header class="navbar-fixed">
         <nav class="blue-grey">
             <div class="nav-wrapper">
-                <ul>
-                    <li><a href="/" class="left brand-logo">&nbsp;&nbsp;GASapp</a></li>
-                </ul>
-                <ul class="right">
+                <a href="/" class="left brand-logo hide-on-med-and-down orange-text">&nbsp;&nbsp;GASapp</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons orange-text">menu</i></a>
+                <ul class="right hide-on-med-and-down">
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'index' %}">See Your Collection</a></li>
-                    <li><a href="{% url 'instruments_create' %}">+ Add an Instrument</a></li>
-                    <li><a href="{% url 'accessories_create' %}">+ Add an Accessory</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <li><a class="orange-text" href="{% url 'index' %}">See Your Collection</a></li>
+                    <li><a class="orange-text" href="{% url 'instruments_create' %}">+ Add an Instrument</a></li>
+                    <li><a class="orange-text" href="{% url 'accessories_create' %}">+ Add an Accessory</a></li>
+                    <li><a class="orange-text" href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    <li><a class="orange-text" href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a class="orange-text" href="{% url 'login' %}">Log In</a></li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
     </header>
+    <ul class="sidenav blue-grey" id="mobile-demo">
+        {% if user.is_authenticated %}
+        <li><a class="sidenav-close orange-text" href="#">Close menu</a></li>
+        <li><a class="orange-text" href="{% url 'index' %}">See Your Collection</a></li>
+        <li><a class="orange-text" href="{% url 'instruments_create' %}">+ Add an Instrument</a></li>
+        <li><a class="orange-text" href="{% url 'accessories_create' %}">+ Add an Accessory</a></li>
+        <li><a class="orange-text" href="{% url 'logout' %}">Log Out</a></li>
+        {% else %}
+        <li><a class="sidenav-close orange-text" href="#">Close menu</a></li>
+        <li><a class="orange-text" href="{% url 'signup' %}">Sign Up</a></li>
+        <li><a class="orange-text" href="{% url 'login' %}">Log In</a></li>
+        {% endif %}
+    </ul>
     <main class="container">
         {% block content %}
         {% endblock %}
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navEls = document.querySelectorAll('.sidenav');
+            const instances = M.Sidenav.init(navEls, {});
+        });
+    </script>
 </body>
 </html>

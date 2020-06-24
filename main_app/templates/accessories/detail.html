@@ -35,32 +35,6 @@
 </div>
 
 <hr class="blue-grey">
-    
-<h3>Instruments related to this accessory:</h3>
-<div class="row card-container">
-    <div class="col s12 m6">
-        <div class="card">
-            <div class="card-content">
-                <h4>ADD Instrument FORM HERE</h4>
-                <p>Don't see the one you want?</p>
-                <a href="{% url 'instruments_create' %}">Click here to add a new one</a>
-            </div>
-        </div>
-    </div>
-    {% if instrument.accessories.count %}
-
-    {% else %}
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-content">
-                    <h4>No associated instruments yet.</h4>
-                </div>
-            </div>
-        </div>
-    {% endif %}   
-</div>
-
-<hr class="blue-grey">
 
 <h3>Photos for this accessory:</h3>
 <div class="row card-container">
@@ -96,7 +70,7 @@
             <div class="card-content">
                 <span class="card-title">Reverb.com Price Guide for: <span class="bold">{{ accessory.name }}</span></span>
                 <p><span class="bold">Title: </span> {{ price_guide.title }}</p>
-                <p><span class="bold">Est. Used Price Range: </span> {{ price_guide.low }} - {{ price_guide.low }}</p>
+                <p><span class="bold">Est. Used Price Range: </span> ${{ price_guide.low }} - ${{ price_guide.high }}</p>
                 <p><span class="bold">Link: </span><a href="{{ price_guide.url }}" target="_blank">{{ price_guide.url }}</a></p>
             </div>
         </div>

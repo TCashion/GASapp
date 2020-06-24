@@ -1,7 +1,16 @@
+:root {
+    --orange-text: rgb(254, 161, 69);
+    --blue-grey: #607d8b;
+    --blue-grey-lighten-4: #cfd8dc;
+    --blue-grey-lighten-5: #eceff1;
+    --blue-grey-darken-3: #37474f;
+}
+
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color: var(--blue-grey-lighten-4);
 }
   
 main {
@@ -18,14 +27,22 @@ input[type=checkbox]:checked, input[type=checkbox]:not(:checked) {
     pointer-events: all;
 }
 
-h1, h2, h3, h4, h5, h6, p, h1 > a, .card-title {
-    /* blue-grey darken-3 */
-    color: #37474f; 
+h1, h2, h3, h4, h5, h6, p, h1 > a, .card-title, .toggle-header-divider {
+    color: var(--blue-grey-darken-3); 
 }
 
+h1, h2, h3, h4, h5, h6, h1 > a, .card-title, .toggle-header-divider {
+    font-family: 'Special Elite', cursive;
+}
+
+
 .btn {
-    /* blue-grey */
-    background-color: #607d8b;
+    background-color: var(--blue-grey);
+    color: var(--orange-text);
+}
+
+.card {
+    background-color: var(--blue-grey-lighten-5);
 }
 
 .card-container {
@@ -41,14 +58,31 @@ h1, h2, h3, h4, h5, h6, p, h1 > a, .card-title {
 }
 
 .card .card-image .card-title {
-    background-color: #607d8b;
+    background-color: var(--blue-grey);
+    color: var(--orange-text);
     width: 100%;
     padding: 0 24px;
-    font-size: 15px;
+    font-size: 2rem;
 }
 
 .toggle-header {
     display: inline-block;
+    margin: 1.5rem 0;
+    font-size: 3.5rem;
+}
+
+.toggle-header-divider {
+    font-size: 4.2rem;
+}
+
+#toggle-links {
+    background-color: var(--blue-grey-lighten-5);
+    border-radius: 5px;
+    margin: 0.75rem; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .emphasized {
@@ -67,12 +101,43 @@ h1, h2, h3, h4, h5, h6, p, h1 > a, .card-title {
     overflow: hidden;
 }
 
+.card .card-image {
+    max-height: 400px;
+}
+
 .bold {
     font-weight: bold;
 }
 
-@media (max-width: 768px) {
+.orange-text {
+    color: var(--orange-text);
+    text-shadow: 1px 1px #000000;
+}
+
+
+@media only screen and (max-width: 768px) {
     .card-container {
         flex-direction: column;
     }
+
+    #toggle-links {
+        flex-direction: column;
+    }
+
+    .toggle-header {
+        display: block;
+        margin: 0.5rem 0; 
+    }
+
+    .toggle-header-divider {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .row .col.xl4 {
+        width: 33.3333333333%;
+        margin-left: auto;
+        left: auto;
+        right: auto;
 }

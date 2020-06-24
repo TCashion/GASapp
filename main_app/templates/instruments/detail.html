@@ -44,7 +44,7 @@
             </div>
             <div class='card-stacked'>
                 <div class="card-content">                
-                    <p> {{ accessory.name }}</p>
+                    <h6> {{ accessory.name }}</h6>
                     <form action="{% url 'dis_assoc_accessory' instrument.id accessory.id %}">
                         <button type="submit" class="btn btn-small">Remove</button>
                     </form>
@@ -63,7 +63,7 @@
 <div class="col s12 m6">
         <div class="card">
             <div class="card-content">                
-                <p> {{ accessory.name }}</p>
+                <h6>{{ accessory.name }}</h6>
                 <form action="{% url 'assoc_accessory' instrument.id accessory.id %}">
                     <button type="submit" class="btn btn-small">Add</button>
                 </form>
@@ -119,7 +119,7 @@
             <div class="card-content">
                 <span class="card-title">Reverb.com Price Guide for: <span class="bold">{{ instrument.name }}</span></span>
                 <p><span class="bold">Title: </span> {{ price_guide.title }}</p>
-                <p><span class="bold">Est. Used Price Range: </span> {{ price_guide.low }} - {{ price_guide.low }}</p>
+                <p><span class="bold">Est. Used Price Range: </span> ${{ price_guide.low }} - ${{ price_guide.high }}</p>
                 <p><span class="bold">Link: </span><a href="{{ price_guide.url }}" target="_blank">{{ price_guide.url }}</a></p>
             </div>
         </div>
