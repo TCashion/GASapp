@@ -56,20 +56,33 @@ def instruments_detail(request, instrument_id):
         'low': response['price_guides'][0]['estimated_value']['price_low']['amount'],
         'high': response['price_guides'][0]['estimated_value']['price_high']['amount']
     }
-    print(price_guide)
     return render(request, 'instruments/detail.html', 
         {
             'instrument': instrument,
             'accessories': accessories,
+            'price_guide': price_guide
         })
 
 @login_required
 def accessories_detail(request, accessory_id):
     accessory = Accessory.objects.get(id=accessory_id)
     url = reverb(accessory)
+    headers = {
+        'content-type': 'application/hal+json',
+        'accept': 'application/hal+json',
+        'accept-version': '3.0'
+    }
+    r = requests.get(url, headers=headers)
+    response = r.json()
+    price_guide = {
+        'title': response['price_guides'][0]['title'],
+        'low': response['price_guides'][0]['estimated_value']['price_low']['amount'],
+        'high': response['price_guides'][0]['estimated_value']['price_high']['amount']
+    }
     return render(request, 'accessories/detail.html',
         {
             'accessory': accessory,
+            'price_guide': price_guide
         })
 
 class InstrumentCreate(LoginRequiredMixin, CreateView):
