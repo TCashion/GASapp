@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Instrument, Accessory, InstrumentPhoto, AccessoryPhoto
 import uuid
 import boto3
+import requests
 
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'gas-app'
@@ -42,16 +43,23 @@ def index(request):
 def instruments_detail(request, instrument_id):
     instrument = Instrument.objects.get(id=instrument_id)
     accessories = Accessory.objects.exclude(id__in = instrument.accessories.all().values_list('id')).filter(user=request.user)
+    url = reverb(instrument)
     return render(request, 'instruments/detail.html', 
         {
             'instrument': instrument,
-            'accessories': accessories
+            'accessories': accessories,
+            'url': url
         })
 
 @login_required
 def accessories_detail(request, accessory_id):
     accessory = Accessory.objects.get(id=accessory_id)
-    return render(request, 'accessories/detail.html', {'accessory': accessory})
+    url = reverb(accessory)
+    return render(request, 'accessories/detail.html',
+        {
+            'accessory': accessory,
+            'url': url
+        })
 
 class InstrumentCreate(LoginRequiredMixin, CreateView):
     model = Instrument
@@ -128,3 +136,17 @@ def assoc_accessory(request, instrument_id, accessory_id):
 def dis_assoc_accessory(request, instrument_id, accessory_id):
     Instrument.objects.get(id=instrument_id).accessories.remove(accessory_id)
     return redirect('instruments_detail', instrument_id=instrument_id)
+
+@login_required
+def reverb(item):
+    base_url = 'https://api.reverb.com/api/priceguide?query='
+    print(base_url)
+    name = item.name.replace(' ', '+')
+    print(name)
+    manufacturer = item.manufacturer.replace(' ', '+')
+    print(manufacturer)
+    year = str(item.year)
+    print(year)
+    complete_url = base_url + year + '+' + manufacturer + '+' + name
+    print(complete_url)
+    return complete_url
