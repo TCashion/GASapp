@@ -6,54 +6,116 @@
     <h1 class="toggle-header">/ <a href="" id="accessories-el">Accessories</a></h1>
 </div>
 
-<div class="row">
-{% for instrument in instruments %}
-    <div class="col s12 m6 l4 instruments">
-        <a href="{% url 'instruments_detail' instrument.id %}">
-            <div class="card hoverable large">
-                <div class="card-image">
-                    <img src="{{ instrument.instrumentphoto_set.first.url }}">
-                    <span class="card-title">{{ instrument.name }}</span>
-                </div>
-                <div class="card-content">
-                    <p>Manufacturer: {{ instrument.manufacturer }}</p>
-                    <p>Type: {{ instrument.instrument_type }}</p>
-                    <p>Owned?: 
-                        {% if instrument.owned %}
-                            <span style="color:green">True</span>
-                        {% else %}
-                            <span style="color:red">False</span>
-                        {% endif %}
-                    </p>
-                </div>
+<div class="row instruments">
+    {% for instrument in instruments %}
+        {% if instrument.owned %}
+            <div class="col s12 m6 l4 instruments">
+                <a href="{% url 'instruments_detail' instrument.id %}">
+                    <div class="card hoverable large">
+                        <div class="card-image">
+                            <img src="{{ instrument.instrumentphoto_set.first.url }}">
+                            <span class="card-title">{{ instrument.name }}</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Manufacturer: {{ instrument.manufacturer }}</p>
+                            <p>Type: {{ instrument.instrument_type }}</p>
+                            <p>Owned?: 
+                                {% if instrument.owned %}
+                                    <span style="color:green">True</span>
+                                {% else %}
+                                    <span style="color:red">False</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
-{% endfor %}
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="row instruments">
+    <h4>Wishlist:</h4>
+    {% for instrument in instruments %}
+        {% if not instrument.owned %}
+            <div class="col s12 m6 l4 instruments">
+                <a href="{% url 'instruments_detail' instrument.id %}">
+                    <div class="card hoverable large">
+                        <div class="card-image">
+                            <img src="{{ instrument.instrumentphoto_set.first.url }}">
+                            <span class="card-title">{{ instrument.name }}</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Manufacturer: {{ instrument.manufacturer }}</p>
+                            <p>Type: {{ instrument.instrument_type }}</p>
+                            <p>Owned?
+                                {% if instrument.owned %}
+                                    <span style="color:green">True</span>
+                                {% else %}
+                                    <span style="color:red">False</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
 
-{% for accessory in accessories %}
-    <div class="col s12 m6 l4 accessories">
-        <a href="{% url 'accessories_detail' accessory.id %}">
-            <div class="card hoverable large">
-                <div class="card-image">
-                    <img src="{{ accessory.accessoryphoto_set.first.url }}">
-                    <span class="card-title">{{ accessory.name }}</span>
-                </div>
-                <div class="card-content">
-                    <p>Manufacturer: {{ accessory.manufacturer }}</p>
-                    <p>Type: {{ accessory.accessory_type }}</p>
-                    <p>Owned?: 
-                        {% if accessory.owned %}
-                            <span style="color:green">True</span>
-                        {% else %}
-                            <span style="color:red">False</span>
-                        {% endif %}
-                    </p>
-                </div>
+<div class="row accessories">
+    {% for accessory in accessories %}
+        {% if accessory.owned %}
+            <div class="col s12 m6 l4 accessories">
+                <a href="{% url 'accessories_detail' accessory.id %}">
+                    <div class="card hoverable large">
+                        <div class="card-image">
+                            <img src="{{ accessory.accessoryphoto_set.first.url }}">
+                            <span class="card-title">{{ accessory.name }}</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Manufacturer: {{ accessory.manufacturer }}</p>
+                            <p>Type: {{ accessory.accessory_type }}</p>
+                            <p>Owned? 
+                                {% if accessory.owned %}
+                                    <span style="color:green">True</span>
+                                {% else %}
+                                    <span style="color:red">False</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
-{% endfor %}
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="row accessories">
+    <h4>Wishlist:</h4>
+    {% for accessory in accessories %}
+        {% if not accessory.owned %}
+            <div class="col s12 m6 l4 accessories">
+                <a href="{% url 'accessories_detail' accessory.id %}">
+                    <div class="card hoverable large">
+                        <div class="card-image">
+                            <img src="{{ accessory.accessoryphoto_set.first.url }}">
+                            <span class="card-title">{{ accessory.name }}</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Manufacturer: {{ accessory.manufacturer }}</p>
+                            <p>Type: {{ accessory.accessory_type }}</p>
+                            <p>Owned? 
+                                {% if accessory.owned %}
+                                    <span style="color:green">True</span>
+                                {% else %}
+                                    <span style="color:red">False</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
 </div>
 
 <script>
