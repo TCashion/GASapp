@@ -18,7 +18,7 @@ input[type=checkbox]:checked, input[type=checkbox]:not(:checked) {
     pointer-events: all;
 }
 
-h1, h2, h3, h4, h5, h6, p, h1 > a {
+h1, h2, h3, h4, h5, h6, p, h1 > a, .card-title {
     /* blue-grey darken-3 */
     color: #37474f; 
 }
@@ -61,6 +61,14 @@ h1, h2, h3, h4, h5, h6, p, h1 > a {
 
 .extra-large {
     max-height: 750px;
+}
+
+.card .card-image, .extra-large {
+    overflow: hidden;
+}
+
+.bold {
+    font-weight: bold;
 }
 
 @media (max-width: 768px) {
