@@ -120,7 +120,7 @@
                 <span class="card-title">Reverb.com Price Guide for: <span class="bold">{{ instrument.name }}</span></span>
                 <p><span class="bold">Title: </span> {{ price_guide.title }}</p>
                 <p><span class="bold">Est. Used Price Range: </span> {{ price_guide.low }} - {{ price_guide.low }}</p>
-                <p><span class="bold">Link: </span> {{ price_guide.url }}</p>
+                <p><span class="bold">Link: </span><a href="{{ price_guide.url }}" target="_blank">{{ price_guide.url }}</a></p>
             </div>
         </div>
     </div>
