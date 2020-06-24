@@ -44,11 +44,23 @@ def instruments_detail(request, instrument_id):
     instrument = Instrument.objects.get(id=instrument_id)
     accessories = Accessory.objects.exclude(id__in = instrument.accessories.all().values_list('id')).filter(user=request.user)
     url = reverb(instrument)
+    headers = {
+        'content-type': 'application/hal+json',
+        'accept': 'application/hal+json',
+        'accept-version': '3.0'
+        }
+    r = requests.get(url, headers=headers)
+    response = r.json()
+    price_guide = {
+        'title': response['price_guides'][0]['title'],
+        'low': response['price_guides'][0]['estimated_value']['price_low']['amount'],
+        'high': response['price_guides'][0]['estimated_value']['price_high']['amount']
+    }
+    print(price_guide)
     return render(request, 'instruments/detail.html', 
         {
             'instrument': instrument,
             'accessories': accessories,
-            'url': url
         })
 
 @login_required
@@ -58,7 +70,6 @@ def accessories_detail(request, accessory_id):
     return render(request, 'accessories/detail.html',
         {
             'accessory': accessory,
-            'url': url
         })
 
 class InstrumentCreate(LoginRequiredMixin, CreateView):
@@ -140,13 +151,8 @@ def dis_assoc_accessory(request, instrument_id, accessory_id):
 @login_required
 def reverb(item):
     base_url = 'https://api.reverb.com/api/priceguide?query='
-    print(base_url)
     name = item.name.replace(' ', '+')
-    print(name)
     manufacturer = item.manufacturer.replace(' ', '+')
-    print(manufacturer)
     year = str(item.year)
-    print(year)
     complete_url = base_url + year + '+' + manufacturer + '+' + name
-    print(complete_url)
     return complete_url
