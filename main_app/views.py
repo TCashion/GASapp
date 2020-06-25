@@ -51,10 +51,16 @@ def instruments_detail(request, instrument_id):
         }
     r = requests.get(url, headers=headers)
     response = r.json()
+    if 'estimated_value' in response['price_guides'][0]:
+        low = response['price_guides'][0]['estimated_value']['price_low']['amount']
+        high = response['price_guides'][0]['estimated_value']['price_high']['amount']
+    else:
+        low = None
+        high = None
     price_guide = {
         'title': response['price_guides'][0]['title'],
-        'low': response['price_guides'][0]['estimated_value']['price_low']['amount'],
-        'high': response['price_guides'][0]['estimated_value']['price_high']['amount'],
+        'low': low,
+        'high': high,
         'url': response['price_guides'][0]['_links']['web']['href']
     }
     return render(request, 'instruments/detail.html', 
@@ -75,10 +81,16 @@ def accessories_detail(request, accessory_id):
     }
     r = requests.get(url, headers=headers)
     response = r.json()
+    if 'estimated_value' in response['price_guides'][0]:
+        low = response['price_guides'][0]['estimated_value']['price_low']['amount']
+        high = response['price_guides'][0]['estimated_value']['price_high']['amount']
+    else:
+        low = None
+        high = None
     price_guide = {
         'title': response['price_guides'][0]['title'],
-        'low': response['price_guides'][0]['estimated_value']['price_low']['amount'],
-        'high': response['price_guides'][0]['estimated_value']['price_high']['amount'],
+        'low': low,
+        'high': high,
         'url': response['price_guides'][0]['_links']['web']['href']
     }
     return render(request, 'accessories/detail.html',
