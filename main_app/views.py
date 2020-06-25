@@ -12,7 +12,6 @@ import requests
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'gas-app'
 
-# Create your views here.
 def home(request):
     return render(request, 'home.html')
 
@@ -164,12 +163,10 @@ def delete_photo(request, photo_id, instrument_id, accessory_id):
         photo.delete()
         return redirect('accessories_detail', accessory_id=accessory_id)
     
-
 @login_required
 def assoc_accessory(request, instrument_id, accessory_id):
     Instrument.objects.get(id=instrument_id).accessories.add(accessory_id)
     return redirect('instruments_detail', instrument_id=instrument_id)
-
 
 @login_required
 def dis_assoc_accessory(request, instrument_id, accessory_id):

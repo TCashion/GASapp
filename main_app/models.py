@@ -5,8 +5,6 @@ from datetime import date
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-# Create your models here.
-
 CONDITIONS = [
     ('U', 'Used'),
     ('P', 'Poor'),
@@ -20,7 +18,6 @@ CONDITIONS = [
 
 def max_year(): 
     return datetime.date.today().year + 5
-
 
 class Accessory(models.Model):
     name = models.CharField(max_length=150)
@@ -53,7 +50,6 @@ class Accessory(models.Model):
     def get_absolute_url(self):
         return reverse('accessories_detail', kwargs={'accessory_id' : self.id})
 
-
 class Instrument(models.Model):
     name = models.CharField(max_length=150)
     instrument_type = models.CharField(max_length=150)
@@ -81,14 +77,12 @@ class Instrument(models.Model):
     def get_absolute_url(self):
         return reverse('instruments_detail', kwargs={'instrument_id' : self.id})
 
-
 class InstrumentPhoto(models.Model):
     url = models.CharField(max_length=300)
     instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
     
     def __str__(self):
         return f"Photo for instrument_id: {self.instrument_id} @{self.url}"
-
 
 class AccessoryPhoto(models.Model):
     url = models.CharField(max_length=300)
