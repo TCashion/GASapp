@@ -13,8 +13,10 @@
                 <p>GASapp is designed to be a simple, intuitive way to log and maintain your gear inventory, check how
                     much your equipment is worth, and maintain your own personal wishlist.
                 </p><br>
-                <p>With Reverb.com estimated valuations built into GASapp, just upload your collection and instantly find out how much your gear is valued at.  
-                    Don't have a collection yet and want to find out how much a similar collection item is selling for so you can get a good deal?  
+                <p>With Reverb.com estimated valuations built into GASapp, just upload your collection and instantly
+                    find out what your gear is worth.
+                    Don't have a collection yet and want to find out how much a similar collection item is selling for
+                    so you can get a good deal?
                     Enter the item into GASapp wishlist and find out instantly what a fair price for that item is!
                 </p><br>
             </div>
@@ -25,9 +27,14 @@
     <div class="col s12">
         <div class="card">
             <div class="card-content">
+                {% if not user.is_authenticated %}
                 <span class="card-title">Sign Up</span>
                 <p>Click <a href="{% url 'signup' %}">here</a> to sign up and start creating your collection!</p>
                 <p>If you already have a collection, click <a href="{% url 'login' %}">here</a> to sign in.</p>
+                {% else %}
+                <span class="card-title">See Your Collection</span>
+                <p>Click <a href="{% url 'index' %}">here</a> to go to your collection.</p>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -37,10 +44,10 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">1959 Les Paul</span>
-                    <img class="responsive-img" src="https://i.imgur.com/vENfYyj.jpeg" alt="Keith Richards 1959 Les Paul">
-                        <span class="card-title">Reverb.com Price Guide for: <span class="bold">Keith Richards 1959 Les Paul</span></span>
-                        <p><span class="bold">Title: </span> Keith Richards 1959 Les Paul</p>
-                        <p><span class="bold">Private Collection - Est. Value $3,000,000</p>        
+                <img class="responsive-img" src="https://i.imgur.com/vENfYyj.jpeg" alt="Keith Richards' 1959 Les Paul">
+                <span class="card-title">Reverb.com Price Guide for: <span class="bold">Keith Richards' 1959 Les Paul</span></span>
+                <p><span class="bold">Title: </span> Keith Richards' 1959 Les Paul</p>
+                <p><span class="bold">Private Collection - Est. Value $3,000,000</p>
             </div>
         </div>
     </div>
@@ -50,10 +57,10 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">David Gilmour #1</span>
-                    <img class="responsive-img" src="https://i.imgur.com/faAVLAB.jpeg" alt="David Gilmour The Black Strat">
-                        <span class="card-title">Reverb.com Price Guide for: <span class="bold">David Gilmour "The Black Strat</span></span>
-                        <p><span class="bold">Title: </span> David Gilmour "The Black Strat"</p>
-                        <p><span class="bold">Sold at auction for $3,975,000 - Most expensive guitar in history</p>          
+                <img class="responsive-img" src="https://i.imgur.com/faAVLAB.jpeg" alt="David Gilmour The Black Strat">
+                <span class="card-title">Reverb.com Price Guide for: <span class="bold">David Gilmour "The Black Strat"</span></span>
+                <p><span class="bold">Title: </span> David Gilmour "The Black Strat"</p>
+                <p><span class="bold">Sold at auction for $3,975,000 - Most expensive guitar in history</p>
             </div>
         </div>
     </div>
@@ -63,10 +70,10 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">Stevie Ray Vaughan #1</span>
-                    <img class="responsive-img" src="https://i.imgur.com/WKDsqTX.jpeg" alt="Stevie Ray Vaughan #1">
-                        <span class="card-title">Reverb.com Price Guide for: <span class="bold">SRV #1</span></span>
-                        <p><span class="bold">Title: </span> SRV #1</p>
-                        <p><span class="bold">Sold at auction for $623,500</p>        
+                <img class="responsive-img" src="https://i.imgur.com/WKDsqTX.jpeg" alt="Stevie Ray Vaughan #1">
+                <span class="card-title">Reverb.com Price Guide for: <span class="bold">SRV #1</span></span>
+                <p><span class="bold">Title: </span> SRV #1</p>
+                <p><span class="bold">Sold at auction for $623,500</p>
             </div>
         </div>
     </div>
