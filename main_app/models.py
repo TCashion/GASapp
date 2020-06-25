@@ -65,12 +65,7 @@ class Instrument(models.Model):
             MinValueValidator(1900, 'Year must be greater than 1900'),
             MaxValueValidator(max_year(), f"Year must be less than {max_year()}")]
     )
-    serial = models.CharField(max_length=250)
-    price = models.DecimalField(
-        max_digits=12, 
-        decimal_places=2,
-        validators = [MinValueValidator(0.01, 'Price must be greater than $0.01')],
-    )
+    serial = models.CharField(max_length=250, null=True, blank=True)
     condition = models.CharField(
         max_length = 1,
         choices = CONDITIONS,
