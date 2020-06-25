@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
@@ -20,10 +20,8 @@
     <header class="navbar-fixed">
         <nav class="blue-grey">
             <div class="nav-wrapper">
-                <a href="/" class="left brand-logo hide-on-med-and-down orange-text"
-                    id="nav-logo">&nbsp;&nbsp;GASapp</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i
-                        class="material-icons orange-text">menu</i></a>
+                <a href="/" class="left brand-logo hide-on-med-and-down orange-text" id="nav-logo">&nbsp;&nbsp;GASapp</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons orange-text">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     {% if user.is_authenticated %}
                     <li><a class="orange-text" href="{% url 'index' %}">See Your Collection</a></li>
@@ -55,12 +53,14 @@
         {% block content %}
         {% endblock %}
     </main>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const navEls = document.querySelectorAll('.sidenav');
             const instances = M.Sidenav.init(navEls, {});
         });
     </script>
+    
 </body>
 
 </html>
