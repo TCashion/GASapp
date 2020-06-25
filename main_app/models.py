@@ -31,11 +31,6 @@ class Accessory(models.Model):
             MaxValueValidator(max_year(), f"Year must be less than {max_year()}")]
     )
     serial = models.CharField(max_length=250, blank=True, null=True)
-    price = models.DecimalField(
-        max_digits=12, 
-        decimal_places=2,
-        validators = [MinValueValidator(0.01, 'Price must be greater than $0.01')],
-    )
     condition = models.CharField(
         max_length = 1,
         choices = CONDITIONS,
