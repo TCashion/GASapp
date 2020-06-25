@@ -1,9 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>GASapp Home</h2>
-
-<p>If you are a music enthusiast, you may suffer from GAS - Gear Acquisition Syndrome. Musicians often find themselves buying more music gear than they could ever need, and it's easy to lose track of what you have, especially if you share equipment with friends and music buddies.</p>
-<p>GASapp is designed to be a simple, intuitive way to log and maintain your gear inventory, check how much your equipment is worth, and maintain your own personal wishlist.</p>
+<div class="row card-container">
+    <div class="col s12" style="margin-top: 30px;">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">GASapp Home</span>
+                <p>If you are a music enthusiast, you may suffer from GAS - Gear Acquisition Syndrome. Musicians often
+                    find themselves buying more music gear than they could ever need, and it's easy to lose track of
+                    what you have, especially if you share equipment with friends and music buddies.</p>
+                <p>GASapp is designed to be a simple, intuitive way to log and maintain your gear inventory, check how
+                    much your equipment is worth, and maintain your own personal wishlist.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row card-container">
+    <div class="col s12">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Sign Up</span>
+                <p>Click <a href="{% url 'signup' %}">here</a> to sign up and start creating your collection!</p>
+                <p>If you already have a collection, click <a href="{% url 'login' %}">here</a> to sign in.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

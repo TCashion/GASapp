@@ -31,10 +31,9 @@ h1, h2, h3, h4, h5, h6, p, h1 > a, .card-title, .toggle-header-divider {
     color: var(--blue-grey-darken-3); 
 }
 
-h1, h2, h3, h4, h5, h6, h1 > a, .card-title, .toggle-header-divider {
+h1, h2, h3, h4, h5, h6, h1 > a, .card-title, .toggle-header-divider, #nav-logo {
     font-family: 'Special Elite', cursive;
 }
-
 
 .btn {
     background-color: var(--blue-grey);
@@ -113,7 +112,6 @@ h1, h2, h3, h4, h5, h6, h1 > a, .card-title, .toggle-header-divider {
     color: var(--orange-text);
     text-shadow: 1px 1px #000000;
 }
-
 
 @media only screen and (max-width: 768px) {
     .card-container {
