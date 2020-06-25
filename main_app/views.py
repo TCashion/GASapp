@@ -106,8 +106,8 @@ def accessories_detail(request, accessory_id):
 def add_photo(request, instrument_id, accessory_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
-        s3 = boto3.session.Session(profile_name='gas-app').client('s3')
-        # s3 = boto3.client('s3')
+        # s3 = boto3.session.Session(profile_name='gas-app').client('s3')
+        s3 = boto3.client('s3')
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
