@@ -9,9 +9,9 @@ We set out to create a place to store and evaluate all of one’s music gear in 
 
 ## Screenshots: 
 
-![Home Page](link)<br>
-![Instrument Detail Page](link)<br>
-![Add an Accessory Page](link)
+![Home Page](https://i.imgur.com/baBKk86.png)<br>
+![Instrument Detail Page](https://i.imgur.com/ZKiELxM.png)<br>
+![Add an Instrument Page](https://i.imgur.com/073JZWh.png)
 
 ## Technologies used: 
 
