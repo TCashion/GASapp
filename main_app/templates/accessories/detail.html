@@ -17,11 +17,11 @@
                 <p>Type: {{ accessory.accessory_type }}</p>
                 <p>Condition: {{ accessory.get_condition_display }}</p>
                 <p>
-                    Owned: 
+                    Owned:
                     {% if accessory.owned %}
-                        <span style="color:green">True</span>
+                    <span style="color:green">True</span>
                     {% else %}
-                        <span style="color:red">False</span>
+                    <span style="color:red">False</span>
                     {% endif %}
                 </p>
             </div>
