@@ -3,135 +3,136 @@
 
 <div id="toggle-links">
     <h1 class="toggle-header"><a href="" class="emphasized" id="instruments-el">Instruments</a></h1>
-    <div class="toggle-header toggle-header-divider" style="height: 64px"><i class="material-icons orange-text" style="font-size: 55px;">local_gas_station</i> </div>
+    <div class="toggle-header toggle-header-divider" style="height: 64px"><i class="material-icons orange-text"
+            style="font-size: 55px;">local_gas_station</i> </div>
     <h1 class="toggle-header"><a href="" id="accessories-el">Accessories</a></h1>
 </div>
 
 <div class="row instruments">
     {% for instrument in instruments %}
-        {% if instrument.owned %}
-            <div class="col s12 m6 xl4 instruments">
-                <a href="{% url 'instruments_detail' instrument.id %}">
-                    <div class="card hoverable large">
-                        <div class="card-image">
-                            {% if instrument.instrumentphoto_set.count %}
-                            <img src="{{ instrument.instrumentphoto_set.first.url }}">
-                            {% else %}
-                            <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
-                            {% endif %}
-                            <span class="card-title">{{ instrument.name }}</span>
-                        </div>
-                        <div class="card-content">
-                            <p>Manufacturer: {{ instrument.manufacturer }}</p>
-                            <p>Type: {{ instrument.instrument_type }}</p>
-                            <p>Owned?: 
-                                {% if instrument.owned %}
-                                    <span style="color:green">True</span>
-                                {% else %}
-                                    <span style="color:red">False</span>
-                                {% endif %}
-                            </p>
-                        </div>
-                    </div>
-                </a>
+    {% if instrument.owned %}
+    <div class="col s12 m6 xl4 instruments">
+        <a href="{% url 'instruments_detail' instrument.id %}">
+            <div class="card hoverable large">
+                <div class="card-image">
+                    {% if instrument.instrumentphoto_set.count %}
+                    <img src="{{ instrument.instrumentphoto_set.first.url }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
+                    {% endif %}
+                    <span class="card-title">{{ instrument.name }}</span>
+                </div>
+                <div class="card-content">
+                    <p>Manufacturer: {{ instrument.manufacturer }}</p>
+                    <p>Type: {{ instrument.instrument_type }}</p>
+                    <p>Owned?:
+                        {% if instrument.owned %}
+                        <span style="color:green">True</span>
+                        {% else %}
+                        <span style="color:red">False</span>
+                        {% endif %}
+                    </p>
+                </div>
             </div>
-        {% endif %}
+        </a>
+    </div>
+    {% endif %}
     {% endfor %}
 </div>
 <div class="row instruments">
     <h4>Wishlist:</h4>
     {% for instrument in instruments %}
-        {% if not instrument.owned %}
-            <div class="col s12 m6 xl4 instruments">
-                <a href="{% url 'instruments_detail' instrument.id %}">
-                    <div class="card hoverable large">
-                        <div class="card-image">
-                            {% if instrument.instrumentphoto_set.count %}
-                            <img src="{{ instrument.instrumentphoto_set.first.url }}">
-                            {% else %}
-                            <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
-                            {% endif %}
-                            <span class="card-title">{{ instrument.name }}</span>
-                        </div>
-                        <div class="card-content">
-                            <p>Manufacturer: {{ instrument.manufacturer }}</p>
-                            <p>Type: {{ instrument.instrument_type }}</p>
-                            <p>Owned?
-                                {% if instrument.owned %}
-                                    <span style="color:green">True</span>
-                                {% else %}
-                                    <span style="color:red">False</span>
-                                {% endif %}
-                            </p>
-                        </div>
-                    </div>
-                </a>
+    {% if not instrument.owned %}
+    <div class="col s12 m6 xl4 instruments">
+        <a href="{% url 'instruments_detail' instrument.id %}">
+            <div class="card hoverable large">
+                <div class="card-image">
+                    {% if instrument.instrumentphoto_set.count %}
+                    <img src="{{ instrument.instrumentphoto_set.first.url }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
+                    {% endif %}
+                    <span class="card-title">{{ instrument.name }}</span>
+                </div>
+                <div class="card-content">
+                    <p>Manufacturer: {{ instrument.manufacturer }}</p>
+                    <p>Type: {{ instrument.instrument_type }}</p>
+                    <p>Owned?
+                        {% if instrument.owned %}
+                        <span style="color:green">True</span>
+                        {% else %}
+                        <span style="color:red">False</span>
+                        {% endif %}
+                    </p>
+                </div>
             </div>
-        {% endif %}
+        </a>
+    </div>
+    {% endif %}
     {% endfor %}
 </div>
 
 <div class="row accessories">
     {% for accessory in accessories %}
-        {% if accessory.owned %}
-            <div class="col s12 m6 xl4 accessories">
-                <a href="{% url 'accessories_detail' accessory.id %}">
-                    <div class="card hoverable large">
-                        <div class="card-image">
-                            {% if accessory.accessoryphoto_set.count %}
-                            <img src="{{ accessory.accessoryphoto_set.first.url }}">
-                            {% else %}
-                            <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
-                            {% endif %}
-                            <span class="card-title">{{ accessory.name }}</span>
-                        </div>
-                        <div class="card-content">
-                            <p>Manufacturer: {{ accessory.manufacturer }}</p>
-                            <p>Type: {{ accessory.accessory_type }}</p>
-                            <p>Owned? 
-                                {% if accessory.owned %}
-                                    <span style="color:green">True</span>
-                                {% else %}
-                                    <span style="color:red">False</span>
-                                {% endif %}
-                            </p>
-                        </div>
-                    </div>
-                </a>
+    {% if accessory.owned %}
+    <div class="col s12 m6 xl4 accessories">
+        <a href="{% url 'accessories_detail' accessory.id %}">
+            <div class="card hoverable large">
+                <div class="card-image">
+                    {% if accessory.accessoryphoto_set.count %}
+                    <img src="{{ accessory.accessoryphoto_set.first.url }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
+                    {% endif %}
+                    <span class="card-title">{{ accessory.name }}</span>
+                </div>
+                <div class="card-content">
+                    <p>Manufacturer: {{ accessory.manufacturer }}</p>
+                    <p>Type: {{ accessory.accessory_type }}</p>
+                    <p>Owned?
+                        {% if accessory.owned %}
+                        <span style="color:green">True</span>
+                        {% else %}
+                        <span style="color:red">False</span>
+                        {% endif %}
+                    </p>
+                </div>
             </div>
-        {% endif %}
+        </a>
+    </div>
+    {% endif %}
     {% endfor %}
 </div>
 <div class="row accessories">
     <h4>Wishlist:</h4>
     {% for accessory in accessories %}
-        {% if not accessory.owned %}
-            <div class="col s12 m6 xl4 accessories">
-                <a href="{% url 'accessories_detail' accessory.id %}">
-                    <div class="card hoverable large">
-                        <div class="card-image">
-                            {% if accessory.accessoryphoto_set.count %}
-                            <img src="{{ accessory.accessoryphoto_set.first.url }}">
-                            {% else %}
-                            <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
-                            {% endif %}
-                            <span class="card-title">{{ accessory.name }}</span>
-                        </div>
-                        <div class="card-content">
-                            <p>Manufacturer: {{ accessory.manufacturer }}</p>
-                            <p>Type: {{ accessory.accessory_type }}</p>
-                            <p>Owned? 
-                                {% if accessory.owned %}
-                                    <span style="color:green">True</span>
-                                {% else %}
-                                    <span style="color:red">False</span>
-                                {% endif %}
-                            </p>
-                        </div>
-                    </div>
-                </a>
+    {% if not accessory.owned %}
+    <div class="col s12 m6 xl4 accessories">
+        <a href="{% url 'accessories_detail' accessory.id %}">
+            <div class="card hoverable large">
+                <div class="card-image">
+                    {% if accessory.accessoryphoto_set.count %}
+                    <img src="{{ accessory.accessoryphoto_set.first.url }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/200/FFFFFF/FFFFFF">
+                    {% endif %}
+                    <span class="card-title">{{ accessory.name }}</span>
+                </div>
+                <div class="card-content">
+                    <p>Manufacturer: {{ accessory.manufacturer }}</p>
+                    <p>Type: {{ accessory.accessory_type }}</p>
+                    <p>Owned?
+                        {% if accessory.owned %}
+                        <span style="color:green">True</span>
+                        {% else %}
+                        <span style="color:red">False</span>
+                        {% endif %}
+                    </p>
+                </div>
             </div>
-        {% endif %}
+        </a>
+    </div>
+    {% endif %}
     {% endfor %}
 </div>
 
@@ -139,12 +140,12 @@
     const toggleEl = document.getElementById('toggle-links');
     const instrumentsHeaderEl = document.getElementById('instruments-el');
     const accessoriesHeaderEl = document.getElementById('accessories-el');
-    const accessoryEls = document.querySelectorAll('.accessories'); 
-    const instrumentEls = document.querySelectorAll('.instruments'); 
+    const accessoryEls = document.querySelectorAll('.accessories');
+    const instrumentEls = document.querySelectorAll('.instruments');
 
     toggleVisible();
 
-    toggleEl.addEventListener('click', function(e) {
+    toggleEl.addEventListener('click', function (e) {
         e.preventDefault();
         if (e.target === instrumentsHeaderEl) {
             if (instrumentsHeaderEl.classList.contains('emphasized')) {
@@ -168,17 +169,17 @@
 
     function toggleVisible() {
         if (instrumentsHeaderEl.classList.contains('emphasized')) {
-            instrumentEls.forEach(function(el) {
+            instrumentEls.forEach(function (el) {
                 el.classList.remove('hidden');
             });
-            accessoryEls.forEach(function(el) {
+            accessoryEls.forEach(function (el) {
                 el.classList.add('hidden');
             });
         } else if (accessoriesHeaderEl.classList.contains('emphasized')) {
-            instrumentEls.forEach(function(el) {
+            instrumentEls.forEach(function (el) {
                 el.classList.add('hidden');
             });
-            accessoryEls.forEach(function(el) {
+            accessoryEls.forEach(function (el) {
                 el.classList.remove('hidden');
             });
         };
