@@ -13,7 +13,7 @@
                 <p>GASapp is designed to be a simple, intuitive way to log and maintain your gear inventory, check how
                     much your equipment is worth, and maintain your own personal wishlist.
                 </p><br>
-                <p>With Reverb.com estimated valuations built into GASapp, just upload your collection and instantly find out how much your gear is valued at.  
+                <p>With Reverb.com estimated valuations built into GASapp, just upload your collection and instantly find out what your gear is worth.  
                     Don't have a collection yet and want to find out how much a similar collection item is selling for so you can get a good deal?  
                     Enter the item into GASapp wishlist and find out instantly what a fair price for that item is!
                 </p><br>
@@ -25,9 +25,14 @@
     <div class="col s12">
         <div class="card">
             <div class="card-content">
+                {% if not user.is_authenticated %}
                 <span class="card-title">Sign Up</span>
                 <p>Click <a href="{% url 'signup' %}">here</a> to sign up and start creating your collection!</p>
                 <p>If you already have a collection, click <a href="{% url 'login' %}">here</a> to sign in.</p>
+                {% else %}
+                <span class="card-title">See Your Collection</span>
+                <p>Click <a href="{% url 'index' %}">here</a> to go to your collection.</p>
+                {% endif %}
             </div>
         </div>
     </div>
