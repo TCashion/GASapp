@@ -47,30 +47,44 @@ def instruments_detail(request, instrument_id):
     instrument = Instrument.objects.get(id=instrument_id)
     accessories = Accessory.objects.exclude(id__in=instrument.accessories.all().values_list('id')).filter(user=request.user)
     url = reverb(instrument)
-    headers = {
-        'content-type': 'application/hal+json',
-        'accept': 'application/hal+json',
-        'accept-version': '3.0'
+    url_wishlist = reverb_wishlist(instrument)
+    if instrument.owned == True:
+        headers = {
+            'content-type': 'application/hal+json',
+            'accept': 'application/hal+json',
+            'accept-version': '3.0'
+            }
+        r = requests.get(url, headers=headers)
+        response = r.json()
+        if 'estimated_value' in response['price_guides'][0]:
+            low = response['price_guides'][0]['estimated_value']['price_low']['amount']
+            high = response['price_guides'][0]['estimated_value']['price_high']['amount']
+        else:
+            low = None
+            high = None
+        price_guide = {
+            'title': response['price_guides'][0]['title'],
+            'low': low,
+            'high': high,
+            'url': response['price_guides'][0]['_links']['web']['href']
         }
-    r = requests.get(url, headers=headers)
-    response = r.json()
-    if 'estimated_value' in response['price_guides'][0]:
-        low = response['price_guides'][0]['estimated_value']['price_low']['amount']
-        high = response['price_guides'][0]['estimated_value']['price_high']['amount']
-    else:
-        low = None
-        high = None
-    price_guide = {
-        'title': response['price_guides'][0]['title'],
-        'low': low,
-        'high': high,
-        'url': response['price_guides'][0]['_links']['web']['href']
-    }
-    return render(request, 'instruments/detail.html', {
-        'instrument': instrument,
-        'accessories': accessories,
-        'price_guide': price_guide,
-    })
+        return render(request, 'instruments/detail.html', {
+            'instrument': instrument,
+            'accessories': accessories,
+            'price_guide': price_guide,
+        })else:
+            headers = {
+            'content-type': 'application/hal+json',
+            'accept': 'application/hal+json',
+            'accept-version': '3.0'
+            }
+        r = requests.get(url_wishlist, headers=headers)
+        response = r.json()
+            listings = response['listings'][0]['_links']['self']['href']
+        return render(request, 'instruments/detail.html', {
+            'instrument': instrument,
+            'accessories': accessories,
+            'listings': listings,
 
 
 @login_required
@@ -152,6 +166,16 @@ def dis_assoc_accessory(request, instrument_id, accessory_id):
 @login_required
 def reverb(item):
     base_url = 'https://api.reverb.com/api/priceguide?query='
+    name = item.name.replace(' ', '+')
+    manufacturer = item.manufacturer.replace(' ', '+')
+    year = str(item.year)
+    complete_url = base_url + year + '+' + manufacturer + '+' + name
+    return complete_url
+
+
+@login_required
+def reverb_wishlist(item):
+    base_url = 'https://api.reverb.com/api/listings?query='
     name = item.name.replace(' ', '+')
     manufacturer = item.manufacturer.replace(' ', '+')
     year = str(item.year)
