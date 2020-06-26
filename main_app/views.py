@@ -46,9 +46,8 @@ def index(request):
 def instruments_detail(request, instrument_id):
     instrument = Instrument.objects.get(id=instrument_id)
     accessories = Accessory.objects.exclude(id__in=instrument.accessories.all().values_list('id')).filter(user=request.user)
-    url = reverb(instrument)
-    url_wishlist = reverb_wishlist(instrument)
     if instrument.owned == True:
+        url = reverb(instrument)
         headers = {
             'content-type': 'application/hal+json',
             'accept': 'application/hal+json',
@@ -72,19 +71,25 @@ def instruments_detail(request, instrument_id):
             'instrument': instrument,
             'accessories': accessories,
             'price_guide': price_guide,
-        })else:
-            headers = {
+        })
+    else:
+        url_wishlist = reverb_wishlist(instrument)
+        headers = {
             'content-type': 'application/hal+json',
             'accept': 'application/hal+json',
-            'accept-version': '3.0'
-            }
+            'accept-version': '3.0'            
+        }
         r = requests.get(url_wishlist, headers=headers)
         response = r.json()
-            listings = response['listings'][0]['_links']['self']['href']
+        if len(response['listings']) > 0:
+            listing = response['listings'][0]['_links']['web']['href']
+        else: 
+            listing = None
         return render(request, 'instruments/detail.html', {
             'instrument': instrument,
             'accessories': accessories,
-            'listings': listings,
+            'listing': listing,
+        })
 
 
 @login_required
@@ -179,7 +184,10 @@ def reverb_wishlist(item):
     name = item.name.replace(' ', '+')
     manufacturer = item.manufacturer.replace(' ', '+')
     year = str(item.year)
-    complete_url = base_url + year + '+' + manufacturer + '+' + name
+    if year == 'None':
+        complete_url = base_url + '+' + manufacturer + '+' + name
+    else:
+        complete_url = base_url + year + '+' + manufacturer + '+' + name
     return complete_url
 
 
