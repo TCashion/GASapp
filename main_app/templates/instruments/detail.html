@@ -101,6 +101,7 @@
     </div>
 </div>
 <hr class="blue-grey">
+{% if instrument.owned %}
 <h3>Reverb valuation:</h3>
 <div class="row card-container">
     <div class="col s12 m8">
@@ -114,5 +115,22 @@
         </div>
     </div>
 </div>
+{% else %}
+    <h3>Reverb listing:</h3>
+    <div class="row card-container">
+        <div class="col s12 m8">
+            <div class="card">
+                <div class="card-content">
+                    {% if listing %}
+                    <span class="card-title">Reverb.com Listing for: <span class="bold">{{ instrument.name }}</span></span>
+                    <p><span class="bold">Link: </span><a href="{{ listing }}" target="_blank">{{ listing }}</a></p>
+                    {% else %}
+                    <span class="card-title">No listing found on Reverb.com for: <span class="bold">{{ instrument.name }}</span></span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 {% endblock %}
