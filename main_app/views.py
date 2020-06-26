@@ -46,7 +46,7 @@ def index(request):
 def instruments_detail(request, instrument_id):
     instrument = Instrument.objects.get(id=instrument_id)
     accessories = Accessory.objects.exclude(id__in=instrument.accessories.all().values_list('id')).filter(user=request.user)
-    if instrument.owned == True:
+    if instrument.owned:
         url = reverb(instrument)
         headers = {
             'content-type': 'application/hal+json',
@@ -77,13 +77,13 @@ def instruments_detail(request, instrument_id):
         headers = {
             'content-type': 'application/hal+json',
             'accept': 'application/hal+json',
-            'accept-version': '3.0'            
+            'accept-version': '3.0'
         }
         r = requests.get(url_wishlist, headers=headers)
         response = r.json()
         if len(response['listings']) > 0:
             listing = response['listings'][0]['_links']['web']['href']
-        else: 
+        else:
             listing = None
         return render(request, 'instruments/detail.html', {
             'instrument': instrument,
@@ -103,7 +103,7 @@ def accessories_detail(request, accessory_id):
     }
     r = requests.get(url, headers=headers)
     response = r.json()
-    if accessory.owned == True:
+    if accessory.owned:
         url = reverb(accessory)
         headers = {
             'content-type': 'application/hal+json',
@@ -133,13 +133,13 @@ def accessories_detail(request, accessory_id):
         headers = {
             'content-type': 'application/hal+json',
             'accept': 'application/hal+json',
-            'accept-version': '3.0'            
+            'accept-version': '3.0'
         }
         r = requests.get(url_wishlist, headers=headers)
         response = r.json()
         if len(response['listings']) > 0:
             listing = response['listings'][0]['_links']['web']['href']
-        else: 
+        else:
             listing = None
         return render(request, 'accessories/detail.html', {
             'accessory': accessory,
