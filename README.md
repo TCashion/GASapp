@@ -5,7 +5,7 @@ Music enthusiasts often suffer from something called GAS - “Gear Acquisition S
 
 The traditional ways of logging and maintaining an inventory over all that gear (and knowing when your bassist swipes a few of your pedals) are many, and none are simple or intuitive.
 
-We set out to create a place to store and evaluate all of one’s music gear in one, easy to access place online where reviews and valuations on each piece of gear can be found.
+GASapp is a place where you can store and evaluate all of your music gear in one, easy to access list. The app includes valuations on each piece of gear you own, or a price listing on your wish-list items (thanks to the Reverb.com API).
 
 ## Screenshots: 
 
